@@ -29,14 +29,21 @@ class View(ft.UserControl):
                                                      bgcolor="orange",
                                                      color="white",
                                                      width=200)
-        self._txtIdOggetto = ft.TextField(label="Id Oggetto", color="orange", border_color="orange")
+        self._txtIdOggetto = ft.TextField(label="Id Oggetto", color="orange", border_color="orange", disabled=True)
         self._btnCompConnessa = ft.ElevatedButton(text="Cerca Connessa", on_click=self._controller.handleCompConnessa,
                                                   bgcolor="orange",
                                                   color="white",
-                                                  width=200)
+                                                  width=200,
+                                                  disabled=True)
 
-        self._page.controls.append(ft.Row([self._btnAnalizzaOggetti, self._txtIdOggetto, self._btnCompConnessa],
-                                          alignment=ft.MainAxisAlignment.CENTER))
+        row1 = ft.Row([ft.Container(self._btnAnalizzaOggetti, width = 250), ft.Container(self._txtIdOggetto, width = 250), ft.Container(self._btnCompConnessa, width = 250)], alignment=ft.MainAxisAlignment.CENTER)
+        self._page.controls.append(row1)
+
+        # row 2
+        self._ddLun = ft.Dropdown(label="Lun", border_color = "orange", disabled = True)
+        self._btnCerca = ft.ElevatedButton(text = "Cerca Oggetti", on_click=self._controller.handleCerca, bgcolor="orange",color="white", disabled = True)
+        row2 = ft.Row([ft.Container(None, width = 250), ft.Container(self._ddLun, width = 250), ft.Container(self._btnCerca, width = 250)], alignment=ft.MainAxisAlignment.CENTER)
+        self._page.controls.append(row2)
 
         # List View where the reply is printed
         self.txt_result = ft.ListView(expand=1, spacing=10, padding=20, auto_scroll=True)
